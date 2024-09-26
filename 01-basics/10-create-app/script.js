@@ -4,7 +4,7 @@ const ComponentDate = defineComponent({
     name: 'ComponentDate',
     
     setup() {
-        const date = new Date().toLocaleDateString(undefined, { dateStyle: 'long' })
+        const date = new Date().toLocaleDateString(navigator.language, { dateStyle: 'long' })
         return { date }
     },
 
