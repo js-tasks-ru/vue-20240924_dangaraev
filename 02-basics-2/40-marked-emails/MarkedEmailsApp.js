@@ -32,19 +32,40 @@ export const emails = [
 export default defineComponent({
   name: 'MarkedEmailsApp',
 
-  setup() {},
+  setup() {
+    const input = ref('')
+
+
+    // Не пришло в голову как ещё можно применить computed так, 
+    // чтобы это помогло в решении задачи.
+    // Разве проверять прямо в шаблоне не будет более оптимизированным решением,
+    // чем каждый раз прогонять массив через computed?
+    const emailsWithMark = computed(() => {
+      return emails.map(email => 
+        input.value && email.toLowerCase().includes(input.value) 
+        ? { email, marked: true}
+        : { email, marked: false}
+      )
+    })
+
+    return {
+      input,
+      emailsWithMark
+    }
+  },
 
   template: `
     <div>
       <div class="form-group">
-        <input type="search" aria-label="Search" />
+        <input v-model="input" type="search" aria-label="Search" />
       </div>
       <ul aria-label="Emails">
-        <li>
-          Eliseo@gardner.biz
-        </li>
-        <li class="marked">
-          Jayne_Kuhic@sydney.com
+        <li 
+          v-for="email in emailsWithMark" 
+          :key="email.email"
+          :class="{ marked: email.marked }"
+        >
+          {{ email.email }}
         </li>
       </ul>
     </div>
