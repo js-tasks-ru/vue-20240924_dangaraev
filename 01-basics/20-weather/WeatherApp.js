@@ -12,15 +12,7 @@ export default defineComponent({
     }
 
     function defineNightTime(currentTime, sunriseTime, sunsetTime) {
-      const [ currentHours, currentMinutes ] = currentTime.split(':')
-      const currentTimeTotal = currentHours * 60 + currentMinutes;
-      const [ sunriseHours, sunriseMinutes ] = sunriseTime.split(':')
-      const sunriseTimeTotal = sunriseHours * 60 + sunriseMinutes;
-      const [ sunsetHours, sunsetMinutes ] = sunsetTime.split(':')
-      const sunsetTimeTotal = sunsetHours * 60 + sunsetMinutes;
-      
-      return sunriseTimeTotal > currentTimeTotal
-        || currentTimeTotal < sunsetTimeTotal;
+      return sunriseTime > currentTime || sunsetTime < currentTime;
     }
 
     function defineTemp(temperature) {
