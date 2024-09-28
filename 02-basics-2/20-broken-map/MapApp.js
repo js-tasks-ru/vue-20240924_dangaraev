@@ -35,7 +35,7 @@ export default defineComponent({
   template: `
     <div class="map" @click="handleClick">
       <img class="map-image" src="./map.png" alt="Map" draggable="false" />
-      <span ref="pin">📍</span>
+      <span ref="pin" class="pin">📍</span>
     </div>
   `,
 })
