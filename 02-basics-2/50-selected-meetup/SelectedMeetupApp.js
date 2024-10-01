@@ -20,7 +20,6 @@ export default defineComponent({
       meetupInfo.value = await getMeetup(id)
     }
 
-    // Не уверен, что использование watch тут оправдано и нет лучшего варианта
     watch(() => selectedMeetup.value, () => {
       getMeetupInfo(selectedMeetup.value)
     })

@@ -35,22 +35,15 @@ export default defineComponent({
   setup() {
     const input = ref('')
 
-
-    // Не пришло в голову как ещё можно применить computed так, 
-    // чтобы это помогло в решении задачи.
-    // Разве проверять прямо в шаблоне не будет более оптимизированным решением,
-    // чем каждый раз прогонять массив через computed?
-    const emailsWithMark = computed(() => {
-      return emails.map(email => 
-        input.value && email.toLowerCase().includes(input.value) 
-        ? { email, marked: true}
-        : { email, marked: false}
-      )
+    const markedEmails = computed(() => {
+      return emails.map(email => (
+        { email, marked: input.value && email.toLowerCase().includes(input.value)}
+      ))
     })
 
     return {
       input,
-      emailsWithMark
+      markedEmails
     }
   },
 
@@ -61,11 +54,11 @@ export default defineComponent({
       </div>
       <ul aria-label="Emails">
         <li 
-          v-for="email in emailsWithMark" 
-          :key="email.email"
-          :class="{ marked: email.marked }"
+          v-for="markedEmail in markedEmails" 
+          :key="markedEmail.email"
+          :class="{ marked: markedEmail.marked }"
         >
-          {{ email.email }}
+          {{ markedEmail.email }}
         </li>
       </ul>
     </div>
