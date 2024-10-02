@@ -20,7 +20,7 @@ export default defineComponent({
       meetupInfo.value = await getMeetup(id)
     }
 
-    watch(() => selectedMeetup.value, () => {
+    watch(selectedMeetup, () => {
       getMeetupInfo(selectedMeetup.value)
     })
 
