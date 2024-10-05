@@ -33,11 +33,11 @@ export default defineComponent({
   },
 
   template: `
-    <div v-for="locale in locales" :key="locale.geographic_name">
+    <div>
       <h1 class="title">Погода в Средиземье</h1>
 
       <ul class="weather-list unstyled-list">
-        <li class="weather-card" :class="{ 'weather-card--night': defineNightTime(locale.current.dt, locale.current.sunrise, locale.current.sunset) }">
+        <li v-for="locale in locales" :key="locale.geographic_name" class="weather-card" :class="{ 'weather-card--night': defineNightTime(locale.current.dt, locale.current.sunrise, locale.current.sunset) }">
           <div v-if="locale.alert" class="weather-alert">
             <span class="weather-alert__icon">⚠️</span>
             <span class="weather-alert__description">Королевская метеослужба короля Арагорна II: Предвещается наступление сильного шторма.</span>
