@@ -13,24 +13,24 @@ export default defineComponent({
   },
 
   setup() {
-    function defineIcon(id) {
+    function getIconForWeatherCondition(id) {
       return WeatherConditionIcons[id]
     }
 
-    function defineTemp(temperature) {
+    function convertKelvinToCelsius(temperature) {
       return `${((Math.round((temperature - 273.15) * 10) / 10)).toFixed(1)} °C`;
     }
 
     return {
-      defineIcon,
-      defineTemp,
+      getIconForWeatherCondition,
+      convertKelvinToCelsius,
     }
   },
 
   template: `
     <div class="weather-conditions">
-        <div class="weather-conditions__icon" :title="current.weather.description">{{ defineIcon(current.weather.id) }}</div>
-        <div class="weather-conditions__temp">{{ defineTemp(current.temp) }}</div>
+        <div class="weather-conditions__icon" :title="current.weather.description">{{ getIconForWeatherCondition(current.weather.id) }}</div>
+        <div class="weather-conditions__temp">{{ convertKelvinToCelsius(current.temp) }}</div>
     </div>
   `,
 })

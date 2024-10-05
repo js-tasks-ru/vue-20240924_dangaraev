@@ -42,7 +42,7 @@ export default defineComponent({
         class="weather-card" 
         :class="{ 'weather-card--night': defineNightTime(locale.current.dt, locale.current.sunrise, locale.current.sunset) }"
     >
-        <CardAlert v-if="locale.alert" />
+        <CardAlert v-if="locale.alert" :alert="locale.alert" />
 
         <CardMainInfo :locale />
 
