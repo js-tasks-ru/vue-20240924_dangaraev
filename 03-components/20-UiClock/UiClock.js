@@ -8,7 +8,7 @@ export default defineComponent({
     let updateInterval
 
     function getCurrentTime() {
-      return new Date().toLocaleTimeString('en-US', { timeStyle: 'medium' })
+      return new Date().toLocaleTimeString(navigator.language, { timeStyle: 'medium' })
     }
 
     function updateCurrentTime() {
